@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/save_data.gd" id="1_xpl5t"]
+
+[resource]
+script = ExtResource("1_xpl5t")
+music_path = "D:\\Judy\\audio\\战斗场景"

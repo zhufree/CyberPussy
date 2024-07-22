@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://dperd3t7c2s75"]
+
+[ext_resource type="PackedScene" uid="uid://c3edy6ry6xihu" path="res://scenes/character.tscn" id="1_jer8y"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_lsthx"]
+
+[node name="MainWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lsthx")
+
+[node name="Character" parent="." instance=ExtResource("1_jer8y")]
+position = Vector2(128, 136)
+scale = Vector2(0.8, 0.8)
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 133.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "鼠标左键点击播放随机语音
+鼠标中键移动
+动画&美术：
+竹筒狸猫Sigma
+程序：
+zhufree"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="PathInputContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -21.0
+offset_right = 75.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PathTextEdit" type="TextEdit" parent="PathInputContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+placeholder_text = "输入音乐文件夹"
+
+[node name="Button" type="Button" parent="PathInputContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "确定"
+
+[connection signal="jump_to_side" from="." to="Character" method="_on_main_window_jump_to_side"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="PathInputContainer/Button" to="." method="_on_path_button_pressed"]
